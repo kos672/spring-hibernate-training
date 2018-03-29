@@ -2,26 +2,18 @@ package com.kuzmin.train.training.configuration;
 
 import com.kuzmin.train.training.AppConfig;
 import com.kuzmin.train.training.JpaRepositoriesConfig;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class WebInitializerConfig extends AbstractDispatcherServletInitializer {
+public class WebInitializerConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
-    protected WebApplicationContext createRootApplicationContext() {
-        AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(AppConfig.class);
-        rootContext.register(JpaRepositoriesConfig.class);
-        return rootContext;
+    protected Class[] getRootConfigClasses() {
+        return new Class[]{AppConfig.class, JpaRepositoriesConfig.class};
     }
 
     @Override
-    protected WebApplicationContext createServletApplicationContext() {
-        AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
-        dispatcherContext.register(MvcConfiguration.class);
-        dispatcherContext.register(SwaggerConfig.class);
-        return dispatcherContext;
+    protected Class[] getServletConfigClasses() {
+        return new Class[]{MvcConfiguration.class, SwaggerConfig.class};
     }
 
     @Override

@@ -5,7 +5,6 @@
 
 <body>
 <h2>Welcome</h2>
-<a href="">API</a>
 <a href="swagger-ui.html">API docs</a>
 </body>
 </html>
